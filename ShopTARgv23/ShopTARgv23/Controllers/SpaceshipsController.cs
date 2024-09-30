@@ -56,7 +56,15 @@ namespace ShopTARgv23.Controllers
                 BuiltDate = vm.BuiltDate,
                 CargoWeight = vm.CargoWeight,
                 Crew = vm.Crew,
-                EnginePower = vm.EnginePower
+                EnginePower = vm.EnginePower,
+                Files = vm.Files,
+                Image = vm.FileToApiViewModels
+                    .Select(x => new FileToApiDto
+                    {
+                        Id = x.ImageId,
+                        ExistingFilePath = x.FilePath,
+                        SpaceshipId = x.SpaceshipId,
+                    }).ToArray()
             };
 
             var result = await _spaceshipServices.Create(dto);
