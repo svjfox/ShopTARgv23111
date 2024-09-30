@@ -38,6 +38,38 @@ namespace ShopTARgv23.Controllers
         }
 
         [HttpGet]
+        public IActionResult Create()
+        {
+            SpaceshipCreateUpdateViewModel spaceship = new();
+
+            return View("CreateUpdate", spaceship);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(SpaceshipCreateUpdateViewModel vm)
+        {
+            var dto = new SpaceshipDto()
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                Type = vm.Type,
+                BuiltDate = vm.BuiltDate,
+                CargoWeight = vm.CargoWeight,
+                Crew = vm.Crew,
+                EnginePower = vm.EnginePower
+            };
+
+            var result = await _spaceshipServices.Create(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index), vm);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
             var spaceship = await _spaceshipServices.DetailsAsync(id);
@@ -81,6 +113,8 @@ namespace ShopTARgv23.Controllers
             vm.CargoWeight = spaceship.CargoWeight;
             vm.Crew = spaceship.Crew;
             vm.EnginePower = spaceship.EnginePower;
+            vm.ModifiedAt = spaceship.ModifiedAt;
+            vm.CreatedAt = spaceship.CreatedAt;
 
             return View("CreateUpdate", vm);
         }

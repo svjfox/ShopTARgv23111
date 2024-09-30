@@ -27,6 +27,26 @@ namespace ShopTARgv23.ApplicationServices.Services
             return result;
         }
 
+        public async Task<Spaceship> Create(SpaceshipDto dto)
+        {
+            Spaceship spaceship = new();
+
+            spaceship.Id = Guid.NewGuid();
+            spaceship.Name = dto.Name;
+            spaceship.Type = dto.Type;
+            spaceship.BuiltDate = dto.BuiltDate;
+            spaceship.CargoWeight = dto.CargoWeight;
+            spaceship.Crew = dto.Crew;
+            spaceship.EnginePower = dto.EnginePower;
+            spaceship.CreatedAt = DateTime.Now;
+            spaceship.ModifiedAt = DateTime.Now;
+
+            await _context.Spaceships.AddAsync(spaceship);
+            await _context.SaveChangesAsync();
+
+            return spaceship;
+        }
+
         public async Task<Spaceship> Update(SpaceshipDto dto)
         {
             Spaceship domain = new();
