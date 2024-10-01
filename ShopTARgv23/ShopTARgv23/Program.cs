@@ -2,6 +2,7 @@ using ShopTARgv23.Data;
 using Microsoft.EntityFrameworkCore;
 using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
+using Microsoft.Extensions.FileProviders;
 
 namespace ShopTARgv23
 {
@@ -32,6 +33,13 @@ namespace ShopTARgv23
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider
+                (Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
+                RequestPath = "/multipleFileUpload"
+            });
 
             app.UseRouting();
 
