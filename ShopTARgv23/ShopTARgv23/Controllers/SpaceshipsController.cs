@@ -122,6 +122,14 @@ namespace ShopTARgv23.Controllers
                 return NotFound();
             }
 
+            var images = await _context.FileToApis
+                .Where(x => x.SpaceshipId == id)
+                .Select(y => new FileToApiViewModel
+                {
+                    FilePath = y.ExistingFilePath,
+                    ImageId = y.Id
+                }).ToArrayAsync();
+
             var vm = new SpaceshipCreateUpdateViewModel();
 
             vm.Id = spaceship.Id;
@@ -133,6 +141,7 @@ namespace ShopTARgv23.Controllers
             vm.EnginePower = spaceship.EnginePower;
             vm.ModifiedAt = spaceship.ModifiedAt;
             vm.CreatedAt = spaceship.CreatedAt;
+            vm.FileToApiViewModels.AddRange(images);
 
             return View("CreateUpdate", vm);
         }

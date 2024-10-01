@@ -68,6 +68,11 @@ else
             </div>
         </div>
 
+        @foreach (var images in Model.FileToApiViewModels)
+        {
+            <partial name="_Images" model="images" />
+        }
+
         @if (Model.Id.HasValue)
         {
             <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
