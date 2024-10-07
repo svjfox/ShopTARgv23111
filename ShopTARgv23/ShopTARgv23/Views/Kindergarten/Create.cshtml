@@ -1,0 +1,29 @@
+﻿@model ShopTARgv23.Models.Kindergarten.KindergartenViewModel
+
+<h1>Добавить детский сад</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Группа</label>
+        <input asp-for="GroupName" />
+        <span asp-validation-for="GroupName" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Количество детей</label>
+        <input asp-for="ChildrenCount" type="number" />
+        <span asp-validation-for="ChildrenCount" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Название детского сада</label>
+        <input asp-for="KindergartenName" />
+        <span asp-validation-for="KindergartenName" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Учитель</label>
+        <input asp-for="Teacher" />
+        <span asp-validation-for="Teacher" class="text-danger"></span>
+    </div>
+    <button type="submit">Добавить</button>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>

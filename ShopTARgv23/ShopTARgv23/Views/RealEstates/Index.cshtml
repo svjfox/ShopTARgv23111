@@ -1,0 +1,28 @@
+﻿@model List<ShopTARgv23.Core.Dto.RealEstateDto>
+
+<h2>Real Estate List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Size (sq meters)</th>
+            <th>Rooms</th>
+            <th>Building Type</th>
+            <th>Created At</th>
+            <th>Modified At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estate in Model)
+        {
+            <tr>
+                <td>@estate.Location</td>
+                <td>@estate.Size</td>
+                <td>@estate.RoomNumber</td>
+                <td>@estate.BuildingType</td>
+                <td>@estate.CreatedAt.ToShortDateString()</td>
+                <td>@estate.ModifiedAt.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
