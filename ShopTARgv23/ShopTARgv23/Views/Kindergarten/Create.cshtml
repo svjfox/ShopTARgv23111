@@ -1,0 +1,24 @@
+﻿@model KindergartenViewModel
+
+<h1>Добавить детский сад</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Группа</label>
+        <input asp-for="GroupName" />
+    </div>
+    <div>
+        <label>Количество детей</label>
+        <input asp-for="ChildrenCount" type="number" />
+    </div>
+    <div>
+        <label>Название детского сада</label>
+        <input asp-for="KindergartenName" />
+    </div>
+    <div>
+        <label>Учитель</label>
+        <input asp-for="Teacher" />
+    </div>
+    <button type="submit">Добавить</button>
+</form>
+

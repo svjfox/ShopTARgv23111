@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShopTARgv23.Models.Kindergarten.KindergartenIndexViewModel>
+
+<h1>Управление детскими садами</h1>
+
+<a asp-action="Create">Добавить детский сад</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Группа</th>
+            <th>Количество детей</th>
+            <th>Название детского сада</th>
+            <th>Учитель</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kindergarten in Model)
+        {
+            <tr>
+                <td>@kindergarten.GroupName</td>
+                <td>@kindergarten.ChildrenCount</td>
+                <td>@kindergarten.KindergartenName</td>
+                <td>@kindergarten.Teacher</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@kindergarten.Id">Изменить</a>
+                    <a asp-action="Delete" asp-route-id="@kindergarten.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
