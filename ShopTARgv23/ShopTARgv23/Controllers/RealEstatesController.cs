@@ -1,42 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopTARgv23.Core.Dto;
+using ShopTARgv23.Data;
+using ShopTARgv23.Models.RealEstates;
 
 namespace ShopTARgv23.Controllers
 {
     public class RealEstatesController : Controller
     {
-        //teha index vaade
-        //racendus peab naitama index vaadet koos andmetega
-        //create meetotit ei tee valmis
-        //andmete sisestate andmebaasi kasitsi
+        private readonly ShopTARgv23Context _context;
+
+        public RealEstatesController
+            (
+                ShopTARgv23Context context
+            )
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-           
-            var realEstates = new List<RealEstateDto>
-    {
-        new RealEstateDto
-        {
-            Id = Guid.NewGuid(),
-            Location = "City Center",
-            Size = 120.5,
-            RoomNumber = 3,
-            BuildingType = "Apartment",
-            CreatedAt = DateTime.Now.AddMonths(-2),
-            ModifiedAt = DateTime.Now
-        },
-        new RealEstateDto
-        {
-            Id = Guid.NewGuid(),
-            Location = "Suburbs",
-            Size = 240,
-            RoomNumber = 5,
-            BuildingType = "House",
-            CreatedAt = DateTime.Now.AddYears(-1),
-            ModifiedAt = DateTime.Now.AddMonths(-1)
-        }
-    };
+            var result = _context.RealEstates
+                .Select(x => new RealEstatesIndexViewModel
+                {
+                    Id = x.Id,
+                    Location = x.Location,
+                    Size = x.Size,
+                    RoomNumber = x.RoomNumber,
+                    BuildingType = x.BuildingType,
+                });
 
-            return View(realEstates);
+            return View(result);
         }
+
+        public IActionResult Create()
+        {
+            RealEstateCreateUpdateViewModel realEstate = new();
+
+            return View("CreateUpdate", realEstate);
+        }
+
+
     }
 }
