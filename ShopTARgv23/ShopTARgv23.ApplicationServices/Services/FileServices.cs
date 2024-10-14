@@ -35,7 +35,7 @@ namespace ShopTARgv23.ApplicationServices.Services
                 foreach (var image in dto.Files)
                 {
                     string uploadsFolder = Path.Combine(_webHost.ContentRootPath, "multipleFileUpload");
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" +image.FileName;
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -63,7 +63,7 @@ namespace ShopTARgv23.ApplicationServices.Services
             var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\"
                 + imageId.ExistingFilePath;
 
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
@@ -94,6 +94,31 @@ namespace ShopTARgv23.ApplicationServices.Services
             }
 
             return null;
+        }
+
+
+        public void UploadFilesToDatabase(RealEstateDto dto, RealEstate domain)
+        {
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                foreach (var image in dto.Files)
+                {
+                    using (var target = new MemoryStream())
+                    {
+                        FileToDatabase files = new FileToDatabase()
+                        {
+                            Id = Guid.NewGuid(),
+                            ImageTitle = image.FileName,
+                            RealEstateId = domain.Id
+                        };
+
+                        image.CopyTo(target);
+                        files.ImageData = target.ToArray();
+
+                        _context.FileToDatabases.Add(files);
+                    }
+                }
+            }
         }
     }
 }
