@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopTARgv23.Core.ServiceInterface
 {
-    class IKindergartenServices
+    public interface IKindergartenServices
     {
         Task<Kindergarten> Create(KindergartenDto dto);
         Task<Kindergarten> Update(KindergartenDto dto);

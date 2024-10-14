@@ -2,11 +2,11 @@
 
 @if (Model.Id.HasValue)
 {
-    <h1>Update</h1>
+        <h1>Update</h1>
 }
 else
 {
-    <h1>Create</h1>
+        <h1>Create</h1>
 }
 
 
@@ -70,44 +70,38 @@ else
 
         @foreach (var images in Model.FileToApiViewModels)
         {
-            <partial name="_Images" model="images" />
-            <input asp-action="removeImage" asp-controller="spaceships" asp-route-imageId="@images.ImageId" type="submit" class="btn btn-danger" value="Remove Image" />
+                <partial name="_Images" model="images" />
+                <input asp-action="removeImage" asp-controller="spaceships" asp-route-imageId="@images.ImageId" type="submit" class="btn btn-danger" value="Remove Image" />
         }
 
         @if (Model.Id.HasValue)
         {
-            <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
+                <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
         }
         else
         {
-            <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
+                <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
         }
         <input asp-action="index" asp-controller="spaceships" type="submit" class="btn btn-outline-secondary" value="Back" />
 
-        <<<<<<< HEAD
-        masterTest
-        =======
-        asd
-
-        >>>>>>> RealEstate
     </form>
 </div>
 
 
 @section Scripts
 {
-    <script>
-        $(document).ready(function () {
-            $('.custom-file-input').on("change", function () {
-                var fileLabel = $(this).next('.custom-file-label');
-                var files = $(this)[0].files;
-                if (files.length > 1) {
-                    fileLabel.html(files.length + ' files selected');
-                }
-                else if (files.length == 1) {
-                    fileLabel.html(files[0].name);
-                }
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileLabel = $(this).next('.custom-file-label');
+                    var files = $(this)[0].files;
+                    if (files.length > 1) {
+                        fileLabel.html(files.length + ' files selected');
+                    }
+                    else if (files.length == 1) {
+                        fileLabel.html(files[0].name);
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 }
