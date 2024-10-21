@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv23", "ShopTARgv23\ShopTARgv23.csproj", "{7723FEA8-5E18-4DAF-9AEC-FCE32F7A9D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARgv23", "ShopTARgv23\ShopTARgv23.csproj", "{7723FEA8-5E18-4DAF-9AEC-FCE32F7A9D24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE732D9C-793A-458E-B365-8EF5503D94A3} = {EE732D9C-793A-458E-B365-8EF5503D94A3}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv23.ApplicationServices", "ShopTARgv23.ApplicationServices\ShopTARgv23.ApplicationServices.csproj", "{6895D7A6-C00F-40CD-978A-564EC6AD451A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARgv23.ApplicationServices", "ShopTARgv23.ApplicationServices\ShopTARgv23.ApplicationServices.csproj", "{6895D7A6-C00F-40CD-978A-564EC6AD451A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv23.Core", "ShopTARgv23.Core\ShopTARgv23.Core.csproj", "{EE732D9C-793A-458E-B365-8EF5503D94A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARgv23.Core", "ShopTARgv23.Core\ShopTARgv23.Core.csproj", "{EE732D9C-793A-458E-B365-8EF5503D94A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv23.Data", "ShopTARgv23.Data\ShopTARgv23.Data.csproj", "{33420B25-EA6E-4EBB-B82E-91044B38A8B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARgv23.Data", "ShopTARgv23.Data\ShopTARgv23.Data.csproj", "{33420B25-EA6E-4EBB-B82E-91044B38A8B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv23.RealEstateTest", "ShopTARgv23.RealEstateTest\ShopTARgv23.RealEstateTest.csproj", "{B073FDE7-6548-451F-89BE-9682031AD10B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE732D9C-793A-458E-B365-8EF5503D94A3} = {EE732D9C-793A-458E-B365-8EF5503D94A3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,10 @@ Global
 		{33420B25-EA6E-4EBB-B82E-91044B38A8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33420B25-EA6E-4EBB-B82E-91044B38A8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33420B25-EA6E-4EBB-B82E-91044B38A8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B073FDE7-6548-451F-89BE-9682031AD10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B073FDE7-6548-451F-89BE-9682031AD10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B073FDE7-6548-451F-89BE-9682031AD10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B073FDE7-6548-451F-89BE-9682031AD10B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
