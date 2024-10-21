@@ -48,20 +48,19 @@ namespace ShopTARgv23.RealEstateTest
             Guid correctGuid = Guid.Parse("1f9e4cce-85a7-4eb7-8379-b12a150fee10");
             Guid guid = Guid.Parse("1f9e4cce-85a7-4eb7-8379-b12a150fee10");
 
-            //Act
+            
             await Svc<IRealEstateServices>().GetAsync(guid);
 
-            //Assert
             Assert.Equal(correctGuid, guid);
         }
         [Fact]
         public async Task Should_DeleteByIdRealEstate_WhenDeleteRealEstate()
         {
-            //Arrange
+            
             RealEstateDto realEstate = MockRealEstateData();
             var addRealEstate = await Svc<IRealEstateServices>().Create(realEstate);
 
-            //Act
+            
 
             var result = await Svc<IRealEstateServices>().Delete((Guid)addRealEstate.Id);
             Assert.Equal(result, addRealEstate);
@@ -72,13 +71,17 @@ namespace ShopTARgv23.RealEstateTest
 
         public async Task ShouldNot_DeleteByIdRealEstate_WhenDidNotDeleteRealEstate()
         {
-            //Arrange
-            RealEstateDto realEstate = MockRealEstateData();
-            var addRealEstate = await Svc<IRealEstateServices>().Create(realEstate);
 
-            //Act
-            var result = await Svc<IRealEstateServices>().Delete((Guid)addRealEstate.Id);
-            Assert.NotEqual(result, addRealEstate);
+
+            RealEstateDto realEstate = MockRealEstateData();
+            var realEstate1 = await Svc<IRealEstateServices>().Create(realEstate);
+            var realEstate2 = await Svc<IRealEstateServices>().Create(realEstate);
+
+            var result = await Svc<IRealEstateServices>().Delete((Guid)realEstate2.Id);
+
+            Assert.NotEqual(result.Id, realEstate1.Id);
+
+
         }
 
 
