@@ -6,7 +6,7 @@ namespace ShopTARgv23.Models.Kindergarten
     public class KindergartenViewModel
     {
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required(ErrorMessage = "Название группы обязательно.")]
         public string GroupName { get; set; }

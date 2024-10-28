@@ -1,29 +1,42 @@
 ﻿@model ShopTARgv23.Models.Kindergarten.KindergartenViewModel
 
-<h1>Добавить детский сад</h1>
+
 
 <form asp-action="Create" method="post">
-    <div>
-        <label>Группа</label>
-        <input asp-for="GroupName" />
-        <span asp-validation-for="GroupName" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Количество детей</label>
-        <input asp-for="ChildrenCount" type="number" />
-        <span asp-validation-for="ChildrenCount" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Название детского сада</label>
-        <input asp-for="KindergartenName" />
-        <span asp-validation-for="KindergartenName" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Учитель</label>
-        <input asp-for="Teacher" />
-        <span asp-validation-for="Teacher" class="text-danger"></span>
-    </div>
-    <button type="submit">Добавить</button>
+    <input asp-for="Id" type="hidden" />
 
+    <div class="form-group row">
+        <label asp-for="GroupName" class="col-sm-2 col-form-label">Группа</label>
+        <div class="col-sm-10">
+            <input asp-for="GroupName" class="form-control" />
+            <span asp-validation-for="GroupName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="ChildrenCount" class="col-sm-2 col-form-label">Количество детей</label>
+        <div class="col-sm-10">
+            <input asp-for="ChildrenCount" type="number" class="form-control" />
+            <span asp-validation-for="ChildrenCount" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="KindergartenName" class="col-sm-2 col-form-label">Название детского сада</label>
+        <div class="col-sm-10">
+            <input asp-for="KindergartenName" class="form-control" />
+            <span asp-validation-for="KindergartenName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Teacher" class="col-sm-2 col-form-label">Учитель</label>
+        <div class="col-sm-10">
+            <input asp-for="Teacher" class="form-control" />
+            <span asp-validation-for="Teacher" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
     <div asp-validation-summary="All" class="text-danger"></div>
 </form>
