@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace ShopTARgv23
 {
@@ -12,44 +13,53 @@ namespace ShopTARgv23
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Добавление сервисов в контейнер зависимостей
             builder.Services.AddControllersWithViews();
 
+            // Регистрация сервисов
             builder.Services.AddScoped<ISpaceshipServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstatesServices>();
 
+            // Настройка контекста базы данных
             builder.Services.AddDbContext<ShopTARgv23Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Настройка HTTP конвейера запросов
             if (!app.Environment.IsDevelopment())
             {
+                // Использование обработчика исключений для продакшн-окружения
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseHsts(); // Включение HSTS для повышения безопасности
+            }
+            else
+            {
+                // Для режима разработки отображение подробных ошибок
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseHttpsRedirection(); // Редирект HTTP на HTTPS
+            app.UseStaticFiles(); // Использование статических файлов
 
+            // Настройка для дополнительных статических файлов
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider
-                (Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
                 RequestPath = "/multipleFileUpload"
             });
 
-            app.UseRouting();
+            app.UseRouting(); // Включение маршрутизации
 
-            app.UseAuthorization();
+            app.UseAuthorization(); // Включение авторизации
 
+            // Настройка маршрутов
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            // Запуск приложения
             app.Run();
         }
     }
