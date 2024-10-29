@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
 
 namespace ShopTARgv23
 {
@@ -29,26 +28,18 @@ namespace ShopTARgv23
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            // Указание пути к изображениям
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "images")),
-                RequestPath = "/images"
-            });
-
-            // Указание пути к шрифтам
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "fonts")),
-                RequestPath = "/fonts"
+                FileProvider = new PhysicalFileProvider
+                (Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
+                RequestPath = "/multipleFileUpload"
             });
 
             app.UseRouting();
