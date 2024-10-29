@@ -16,6 +16,7 @@
     <header id="header" class="alt">
         <div class="logo">
             <a asp-area="" asp-controller="Home" asp-action="Index">ShopTARgv23 <span>Home</span></a>
+
         </div>
         <a href="#menu">Menu</a>
     </header>
@@ -24,11 +25,21 @@
     <nav id="menu">
         @* <a href="#menu" class="close"></a> <!-- Кнопка для закрытия меню --> *@
         <ul class="links">
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-            <li><a asp-area="" asp-controller="Spaceships" asp-action="Index">Spaceship</a></li>
-            <li><a asp-area="" asp-controller="RealEstates" asp-action="Index">Real Estates</a></li>
-            <li><a asp-area="" asp-controller="Kindergarten" asp-action="Index">Kindergartens</a></li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Spaceships" asp-action="Index">Spaceship</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="RealEstates" asp-action="Index">Real Estates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Kindergarten" asp-action="Index">Kindergartens</a>
+            </li>
         </ul>
     </nav>
 
