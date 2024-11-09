@@ -20,6 +20,8 @@ namespace ShopTARgv23
             builder.Services.AddScoped<ISpaceshipServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstatesServices>();
+            builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
+
 
             // Настройка контекста базы данных
             builder.Services.AddDbContext<ShopTARgv23Context>(options =>
