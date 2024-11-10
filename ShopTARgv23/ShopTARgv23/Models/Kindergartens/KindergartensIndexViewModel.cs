@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ShopTARgv23.Models.Kindergartens
+﻿namespace ShopTARgv23.Models.Kindergartens
 {
     public class KindergartensIndexViewModel
     {
