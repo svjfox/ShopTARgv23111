@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShopTARgv23.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class all : Migration
+    public partial class alll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,7 +31,8 @@ namespace ShopTARgv23.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImageTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    RealEstateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    RealEstateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdFromModel = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,14 +43,13 @@ namespace ShopTARgv23.Data.Migrations
                 name: "Kindergartens",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ChildrenCount = table.Column<int>(type: "int", nullable: false),
-                    KindergartenName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Teacher = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChildrenCount = table.Column<int>(type: "int", nullable: true),
+                    KindergartenName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Teacher = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

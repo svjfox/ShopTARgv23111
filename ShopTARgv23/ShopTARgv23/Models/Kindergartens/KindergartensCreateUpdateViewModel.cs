@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShopTARgv23.Core.Domain
+﻿namespace ShopTARgv23.Models.Kindergartens
 {
-    public class Kindergarten
+    public class KindergartensCreateUpdateViewModel
     {
         public Guid? Id { get; set; }
 
@@ -21,5 +15,9 @@ namespace ShopTARgv23.Core.Domain
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+
+        public List<IFormFile> Files { get; set; }
+        public List<KindergartensImageViewModel> Image { get; set; }
+            = new List<KindergartensImageViewModel>();
     }
 }

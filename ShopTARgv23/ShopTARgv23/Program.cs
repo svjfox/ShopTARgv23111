@@ -4,6 +4,7 @@ using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using ShopTARgv23.ApplicationService.Services;
 
 namespace ShopTARgv23
 {
@@ -21,7 +22,7 @@ namespace ShopTARgv23
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstatesServices>();
             builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
-
+            builder.Services.AddScoped<IKindergartenServices, KindergartenServices>();
 
             // Настройка контекста базы данных
             builder.Services.AddDbContext<ShopTARgv23Context>(options =>

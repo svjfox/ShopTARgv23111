@@ -1,7 +1,7 @@
 using ShopTARgv23.Core.Domain;
 using ShopTARgv23.Core.Dto;
 using ShopTARgv23.Core.ServiceInterface;
-using ShopTARgv23.Data.Migrations;
+using ShopTARgv23.Data;
 
 
 namespace ShopTARgv23.RealEstateTest

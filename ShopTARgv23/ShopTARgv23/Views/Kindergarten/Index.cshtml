@@ -1,40 +1,47 @@
-﻿@model IEnumerable<ShopTARgv23.Models.Kindergarten.KindergartenIndexViewModel>
+﻿@model IEnumerable<ShopTARgv23.Models.Kindergartens.KindergartensIndexViewModel>
 
 @{
-    int rowNumber = 1; // Инициализация переменной для нумерации строк
+    int rowNumber = 1;
 }
 
-<h1>Управление детскими садами</h1>
+<div>
+    <a asp-action="create" asp-controller="Kindergartens" type="submit" class="btn btn-primary">Create</a>
+</div>
 
-<a asp-action="Create" class="btn btn-primary">Добавить детский сад</a>
+<div class="h1">
+    Kindergarten
+</div>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Nr</th>
-            <th scope="col">Группа</th>
-            <th scope="col">Количество детей</th>
-            <th scope="col">Название детского сада</th>
-            <th scope="col">Учитель</th>
-            <th scope="col">Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var kindergarten in Model)
-        {
+<form method="post">
+    <table class="table table-hover">
+        <thed>
             <tr>
-                <td>@rowNumber</td>
-                <td>@kindergarten.GroupName</td>
-                <td>@kindergarten.ChildrenCount</td>
-                <td>@kindergarten.KindergartenName</td>
-                <td>@kindergarten.Teacher</td>
-                <td>
-                    <a asp-action="Details" asp-controller="Kindergartens" asp-route-id="@kindergarten.Id" class="btn btn-info">Подробнее</a>
-                    <a asp-action="Edit" asp-controller="Kindergartens" asp-route-id="@kindergarten.Id" class="btn btn-primary">Изменить</a>
-                    <a asp-action="Delete" asp-controller="Kindergartens" asp-route-id="@kindergarten.Id" class="btn btn-outline-danger">Удалить</a>
-                </td>
+                <th scope="col">Nr</th>
+                <th scope="col">GroupName</th>
+                <th scope="col">ChildrenCount</th>
+                <th scope="col">KindergartenName</th>
+                <th scope="col">Teacher</th>
+                <th scope="col"></th>
             </tr>
-            rowNumber++; // Увеличение номера строки
-        }
-    </tbody>
-</table>
+        </thed>
+        <tbody>
+            @foreach (var Kindergarten in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                    <td>@Kindergarten.GroupName</td>
+                    <td>@Kindergarten.ChildrenCount</td>
+                    <td>@Kindergarten.KindergartenName</td>
+                    <td>@Kindergarten.Teacher</td>
+                    <td>
+                        <a asp-action="details" asp-controller="Kindergartens" asp-route-id="@Kindergarten.Id" class="btn btn-info">Details</a>
+                        <a asp-action="update" asp-controller="Kindergartens" asp-route-id="@Kindergarten.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="delete" asp-controller="Kindergartens" asp-route-id="@Kindergarten.Id" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+
+                rowNumber++;
+            }
+        </tbody>
+    </table>
+</form>

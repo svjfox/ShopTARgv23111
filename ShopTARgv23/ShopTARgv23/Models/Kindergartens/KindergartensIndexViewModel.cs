@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShopTARgv23.Core.Domain
+namespace ShopTARgv23.Models.Kindergartens
 {
-    public class Kindergarten
+    public class KindergartensIndexViewModel
     {
         public Guid? Id { get; set; }
 
