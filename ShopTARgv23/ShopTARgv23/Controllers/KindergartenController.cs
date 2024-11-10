@@ -6,7 +6,6 @@ using ShopTARgv23.Core.Dto;
 using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.Data;
 using ShopTARgv23.Models.Kindergartens;
-using ShopTARgv23.Models.Spaceships;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ShopTARgv23.Controllers
@@ -17,6 +16,8 @@ namespace ShopTARgv23.Controllers
         private readonly ShopTARgv23Context _context;
         private readonly IKindergartenServices _KindergartenServices;
         private readonly IFileServices _fileServices;
+
+        
 
         public KindergartensController
             (
