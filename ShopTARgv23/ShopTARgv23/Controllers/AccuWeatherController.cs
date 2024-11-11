@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShopTARgv23.Core.Dto.WeatherDtos;
 using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.Models.AccuWeathers;
 
@@ -35,6 +36,14 @@ namespace ShopTARgv23.Controllers
         [HttpGet]
         public IActionResult City(string city)
         {
+
+            AccuLocationWeatherResultDto dto = new();
+
+
+             dto. CityName = city;
+            _weatherForecastServices.AccuWeatherResult(dto);
+            AccuWeatherViewModel vm = new();
+
 
 
             return View();

@@ -1,59 +1,47 @@
-﻿@model ShopTARgv23.Models.AccuWeathers.CityModel
+﻿@model ShopTARgv23.Models.AccuWeathers.AccuWeatherViewModel
 
+<h1>Forecast for the selected city</h1>
 
-@{
-    ViewBag.Title = "City";
-}
-
-<h2>City</h2>
-
-<div>
-    <h4>CityModel</h4>
+<div class="container">
+    
     <hr />
-    <dl class="dl-horizontal">
-        <div class="form-group row">
-            <label asp-for="LocalizedName" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayNameFor(model => model.LocalizedName)
-        </div>
+    <dl class="row">
 
         <div class="form-group row">
-            <label asp-for="Rank" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.Rank)
-        </div>
+                <label asp-for="TempMinValue" class="col-sm-2 col-form-label"></label>
+                @Html.DisplayFor(model => model.TempMinValue)
+                </div>
 
         <div class="form-group row">
-            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayNameFor(model => model.Name)
-        </div>
+                    <label asp-for="TempMaxValue" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.TempMaxValue)
+                    </div>
 
         <div class="form-group row">
-            <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.Description)
-        </div>
-
+                        <label asp-for="Text" class="col-sm-2 col-form-label"></label>
+                            @Html.DisplayFor(model => model.Text)
+                            </div>
         <div class="form-group row">
-            <label asp-for="Country" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayNameFor(model => model.Country)
-        </div>
+            <label asp-for="Severity" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Severity)
+            </div>
+            <div class="form-group row">
+                <label asp-for="Category" class="col-sm-2 col-form-label"></label>
+                @Html.DisplayFor(model => model.Category)
+                </div>
+                <div class="form-group row">
+                    <label asp-for="EffectiveDate" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.EffectiveDate)
+                    </div>
+                                              
 
-        <div class="form-group row">
-            <label asp-for="TimeZone" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.TimeZone)
-        </div>
 
-        <div class="form-group row">
-            <label asp-for="GeoPosition" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayNameFor(model => model.GeoPosition)
-        </div>
+                            </dl>
 
-        <dd>
-            
-            @Html.DisplayFor(model => model.Key)
-        </dd>
+                            <a asp-action="Index" asp-controller="accuWeathers" class="btn btn-danger">Index</a>
+                        </div>
 
-    </dl>
 
-    </div>
 
 
 
