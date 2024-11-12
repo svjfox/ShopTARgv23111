@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ShopTARgv23.ApplicationServices.Services
 {
     public class GameFreeServices : IGameFreeServices
