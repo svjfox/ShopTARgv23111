@@ -1,29 +1,30 @@
 ﻿using Nancy.Json;
-using ShopTARgv23.Core.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using ShopTARgv23.Core.Dto.ChuckNorrisRootDto;
+using ShopTARgv23.Core.ServiceInterface;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ShopTARgv23.ApplicationServices.Services
 {
-    public class ChuckNorrisServices
+    public class ChuckNorrisServices : IChuckNorrisServices
     {
-        public async Task<ChuckNorrisJokeDto> GetRandomJoke(ChuckNorrisJokeDto dto)
-        {
-            string url = "https://api.chucknorris.io/jokes/random";
 
-           using (WebClient client = new WebClient())
+        public async Task<ChuckNorrisResultDto> ChuckNorrisResult(ChuckNorrisResultDto dto)
+        {
+            var url = "https://api.chucknorris.io/jokes/random";
+
+            using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
-                ChuckNorrisJokeDto joke = new JavaScriptSerializer().Deserialize<ChuckNorrisJokeDto>(json);
+                ChuckNorrisRootDto chuckNorrisResult = new JavaScriptSerializer().Deserialize<ChuckNorrisRootDto>(json);
 
-                dto.icon_url = joke.icon_url;
-                dto.id = joke.id;
-                dto.url = joke.url;
-                dto.value = joke.value;
+                //dto.Categories = chuckNorrisResult.Categories[0];
+                dto.CreatedAt = chuckNorrisResult.CreatedAt;
+                dto.IconUrl = chuckNorrisResult.IconUrl;
+                dto.Id = chuckNorrisResult.Id;
+                dto.UpdatedAt = chuckNorrisResult.UpdatedAt;
+                dto.Url = chuckNorrisResult.Url;
+                dto.Value = chuckNorrisResult.Value;
             }
 
             return dto;
