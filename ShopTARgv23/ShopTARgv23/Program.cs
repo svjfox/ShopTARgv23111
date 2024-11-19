@@ -26,7 +26,7 @@ namespace ShopTARgv23
             builder.Services.AddScoped<IKindergartenServices, KindergartenServices>();
             builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
             builder.Services.AddScoped<IFreeGameServices, FreeGameServices>();
-            builder.Services.AddScoped<IThecocktaildbServices, ThecocktaildbServices>();
+            builder.Services.AddScoped<ICocktailServices, CocktailServices>();
 
             // Настройка контекста базы данных
             builder.Services.AddDbContext<ShopTARgv23Context>(options =>
