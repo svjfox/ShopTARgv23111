@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 
 namespace ShopTARgv23.Core.Dto.WeatherDtos
 {
- 
-    //public class AccuLocationRootDto
-    //{
-    //    public List<City> Citys { get; set; }
-    //}
-
     public class AccuLocationRootDto
     {
         [JsonPropertyName("Version")]
