@@ -99,8 +99,30 @@ namespace ShopTARgv23.Controllers
 
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
 
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("index", "home");
+                    }
+                }
+
+                if (result.IsLockedOut)
+                {
+                    return View("AccountLocked");
+                }
+
+                ModelState.AddModelError("", "Invalid Login Attempt");
+
+
             }
             return View(model);
+            
         }
 
 
