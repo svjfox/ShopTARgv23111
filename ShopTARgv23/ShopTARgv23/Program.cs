@@ -4,7 +4,10 @@ using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
 
+
 using ShopTARgv23.ApplicationService.Services;
+using Fluent.Infrastructure.FluentModel;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace ShopTARgv23
@@ -32,6 +35,21 @@ namespace ShopTARgv23
             // Настройка контекста базы данных
             builder.Services.AddDbContext<ShopTARgv23Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequiredLength = 3;
+
+                options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            })
+            .AddEntityFrameworkStores<ShopTARgv23Context>()
+            .AddDefaultTokenProviders()
+            .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation")
+            .AddDefaultUI();
+
 
             var app = builder.Build();
 
