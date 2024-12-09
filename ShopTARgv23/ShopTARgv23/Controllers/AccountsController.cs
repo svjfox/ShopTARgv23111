@@ -151,9 +151,5 @@ namespace ShopTARgv23.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
-
     }
 }
