@@ -105,6 +105,8 @@ namespace ShopTARgv23.Controllers
                     {
                         return Redirect(returnUrl);
 
+
+
                     }
                     else
                     {
@@ -124,6 +126,18 @@ namespace ShopTARgv23.Controllers
             return View(model);
             
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var user = await _userManager.GetUserAsync(User);  
+            if (user != null)
+            {
+                ViewBag.Username = user.UserName;  
+            }
+            return View();
+        }
+
 
 
     }

@@ -44,14 +44,26 @@
                         <a class="nav-link fw-bold px-lg-3 py-3 py-lg-4" asp-area="" asp-controller="Emails" asp-action="Index">Emails</a>
                     </li>
                     </li>
-                    <li class="nav-item">
+                    <li class="navbar-nav ml-auto">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login">Login</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+
                         <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Register">Register</a>
+                                              
+
+
                     </li>
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div>
+                                <h6>Welcome, @User.Identity.Name!</h6>
+                            </div>
+                        }
+
+
+                    </li>
+
+
                 </ul>
             </div>
         </div>

@@ -52,6 +52,13 @@ namespace ShopTARgv23
             .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation")
             .AddDefaultUI();
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Время жизни сессии
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
 
             var app = builder.Build();
 
@@ -77,8 +84,11 @@ namespace ShopTARgv23
                 FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
                 RequestPath = "/multipleFileUpload"
             });
+            app.UseSession();
 
             app.UseRouting(); // Включение маршрутизации
+
+            app.UseAuthentication();
 
             app.UseAuthorization(); // Включение авторизации
 
