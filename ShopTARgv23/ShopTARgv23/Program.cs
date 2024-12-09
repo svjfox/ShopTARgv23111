@@ -4,9 +4,11 @@ using ShopTARgv23.Core.ServiceInterface;
 using ShopTARgv23.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
 
+using ShopTARgv23.Core.Domain;
+
 
 using ShopTARgv23.ApplicationService.Services;
-using Fluent.Infrastructure.FluentModel;
+
 using Microsoft.AspNetCore.Identity;
 
 
