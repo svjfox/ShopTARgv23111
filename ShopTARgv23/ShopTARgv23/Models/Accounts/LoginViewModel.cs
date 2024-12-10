@@ -15,10 +15,9 @@ namespace ShopTARgv23.Models.Accounts
 
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
-
-        public bool RememberName { get; set; }
-
+                
         public string? ReturnUrl { get; set; }
+        
 
         public IList<AuthenticationScheme>? ExternalLogins { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopTARgv23.Models.Accounts
 {
@@ -18,6 +19,9 @@ namespace ShopTARgv23.Models.Accounts
         public string ConfirmPassword { get; set; }
 
         public string City { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
 
         public string FirstName { get; set; }
     }

@@ -74,16 +74,46 @@
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">
+                        @if (ViewBag.UserFirstName != null)
+                        {
+                            <li class="nav-item dropdown">
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Manage Account
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ChangePassword">Change Password</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                                                
+
+
+                            <li class="nav-item">
+                            <span class="navbar-text fw-bold px-lg-3 py-3 py-lg-4">Welcome, @ViewBag.UserFirstName!</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item dropdown">
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Manage Account
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ChangePassword">Change Password</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
                             <span class="navbar-text fw-bold px-lg-3 py-3 py-lg-4">Welcome, @User.Identity.Name!</span>
-                        </li>
+                            </li>
+                        }
 
                         <!-- Отображение имени пользователя -->
 
-                        <li class="nav-item">
-                            <span class="navbar-text fw-bold px-lg-3 py-3 py-lg-4">@User.Identity.</span>
 
-                        </li>
 
                         <li class="nav-item">
                             <form asp-area="" asp-controller="Accounts" asp-action="Logout" method="post" class="d-inline">
