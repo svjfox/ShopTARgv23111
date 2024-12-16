@@ -122,16 +122,16 @@ namespace ShopTARgv23.Controllers
 
             }
             return View(model);
-            
+
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);  
+            var user = await _userManager.GetUserAsync(User);
             if (user != null)
             {
-                ViewBag.Username = user.UserName;                
+                ViewBag.Username = user.UserName;
             }
             return View();
         }
@@ -215,7 +215,35 @@ namespace ShopTARgv23.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
 
+        public async Task<IActionResult> ResetPassword()
+        {
+            
+            
+                var user = await _userManager.GetUserAsync(User);
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                if (token == null || user.Email == null)
+                {
+                    ModelState.AddModelError("", "Invalid password reset token");
+
+
+                }
+
+                var model = new ResetPasswordViewModel
+                {
+                    Token = token,
+                    Email = user.Email
+                };
+
+                return View(model);
+
+
+
+            
+        }
 
     }
 }
