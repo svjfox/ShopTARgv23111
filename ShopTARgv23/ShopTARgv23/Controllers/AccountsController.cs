@@ -266,9 +266,7 @@ namespace ShopTARgv23.Controllers
         }
 
         [HttpPost]
-
         [AllowAnonymous]
-
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -278,14 +276,25 @@ namespace ShopTARgv23.Controllers
                 {
                     var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                     var passwordResetLink = Url.Action("ResetPassword", "Accounts", new { email = model.Email, token = token }, Request.Scheme);
+
+                    var emailDto = new EmailDto
+                    {
+                        To = model.Email,
+                        Subject = "Password Reset Request",
+                        Body = $"Please reset your password by <a href='{passwordResetLink}'>clicking here</a>."
+                    };
+
+                    _emailsServices.SendEmail(emailDto);
+
                     return View("ForgotPasswordConfirmation");
                 }
 
                 return View("ForgotPasswordConfirmation");
-
             }
+
             return View(model);
         }
+
 
         [HttpGet]
         [AllowAnonymous]
@@ -304,7 +313,7 @@ namespace ShopTARgv23.Controllers
 
                 }
 
-                var model = new ResetPasswordViewModel
+                var model = new ResetPasswordModel
                 {
                     Token = token,
                     Email = user.Email
@@ -316,6 +325,70 @@ namespace ShopTARgv23.Controllers
 
             
         }
+        /// <summary>
+        /// //////////////////
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string email, string token)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(token))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var model = new ResetPasswordModel
+            {
+                Email = email,
+                Token = token
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Если пользователь не найден, перенаправляем на подтверждение
+                return RedirectToAction("ResetPasswordConfirmation");
+            }
+
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+            if (resetPassResult.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation");
+            }
+
+            foreach (var error in resetPassResult.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+
+
 
     }
 }
