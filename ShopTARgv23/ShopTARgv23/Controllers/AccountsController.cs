@@ -296,41 +296,38 @@ namespace ShopTARgv23.Controllers
         }
 
 
-        [HttpGet]
-        [AllowAnonymous]
+        //[HttpGet]
+        //[AllowAnonymous]
 
-        public async Task<IActionResult> ResetPassword()
-        {
+        //public async Task<IActionResult> ResetPassword()
+        //{
             
             
-                var user = await _userManager.GetUserAsync(User);
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        //        var user = await _userManager.GetUserAsync(User);
+        //        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-                if (token == null || user.Email == null)
-                {
-                    ModelState.AddModelError("", "Invalid password reset token");
+        //        if (token == null || user.Email == null)
+        //        {
+        //            ModelState.AddModelError("", "Invalid password reset token");
 
 
-                }
+        //        }
 
-                var model = new ResetPasswordModel
-                {
-                    Token = token,
-                    Email = user.Email
-                };
+        //        var model = new ResetPasswordModel
+        //        {
+        //            Token = token,
+        //            Email = user.Email
+        //        };
 
-                return View(model);
+        //        return View(model);
 
 
 
             
-        }
+        //}
         /// <summary>
         /// //////////////////
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
+     
 
         [HttpGet]
         [AllowAnonymous]
